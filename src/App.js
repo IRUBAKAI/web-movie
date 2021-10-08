@@ -9,11 +9,9 @@ function App() {
   return(
     <>
     <Router>
-      <Navbar/>
-      <Main/>
-        <Switch>
-            <Route path="/favouriteAdd"><FavouriteAdd/></Route>
-        </Switch>
+      <Route exact path="/favouriteAdd" component={FavouriteAdd}/>
+      <Route exact path="/" component={Navbar}/>
+      <Route exact path="/" component={Main}/>
     </Router>
     </>
   )
