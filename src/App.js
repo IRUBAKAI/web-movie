@@ -1,17 +1,21 @@
 import React from "react";
 import Navbar from './compoents/Navbar';
 import FavouriteAdd from './compoents/FavouriteAdd';
+import PersonalFilmInfo from "./compoents/PersonalFilmInfo";
 import Main from './compoents/Main';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
 
 function App() {
   return(
     <>
     <Router>
-      <Route exact path="/favouriteAdd" component={FavouriteAdd}/>
-      <Route exact path="/" component={Navbar}/>
-      <Route exact path="/" component={Main}/>
+      <Route exact path="/favouriteAdd"><FavouriteAdd/></Route>
+      <Route exact path="/PersonalFilmInfo"><PersonalFilmInfo/></Route>
+      <Route exact path="/">
+        <Navbar/>
+        <Main/>
+      </Route>
     </Router>
     </>
   )

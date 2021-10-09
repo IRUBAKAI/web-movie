@@ -7,7 +7,6 @@ function FavouriteAdd() {
         <>
             here is nothing
             <Link to="/">Go Home</Link>
-
         </>
     )
 }
