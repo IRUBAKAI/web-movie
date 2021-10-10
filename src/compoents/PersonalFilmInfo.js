@@ -1,15 +1,17 @@
-import React from 'react';
-import { useParams } from 'react';
+import { useParams } from 'react-router';
 
 
 function PersonalFilmInfo() {
 
     const {id} = useParams()
+    console.log(id)
 
-    // console.log(movieInfo)
-    return(
-        <div></div>
-    )
+    return (
+      <div>
+          
+        <h2>Now showing post</h2>
+      </div>
+    );
 }
 
 export default PersonalFilmInfo

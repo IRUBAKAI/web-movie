@@ -14,7 +14,6 @@ function Main() {
       .then((response) => response.json())
       .then((movieInfo) => {
         setFilms(movieInfo.results);
-        PersonalFilmInfo(movieInfo)
       });
   }, []);
 
@@ -34,7 +33,6 @@ function Main() {
             <div className={styles.movieInfoCss}>
               <h2>
                 <Link
-                  onClick={(id)=> {console.log(id)}}
                   className={styles.linkToInfoFilm}
                   to={`personalFilmInfo/${id}`}
                 >
