@@ -1,6 +1,10 @@
 import React from 'react';
+import { useParams } from 'react';
 
-function PersonalFilmInfo(movieInfo) {
+
+function PersonalFilmInfo() {
+
+    const {id} = useParams()
 
     // console.log(movieInfo)
     return(

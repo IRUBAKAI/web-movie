@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 import PersonalFilmInfo from "./PersonalFilmInfo";
 
+
 function Main() {
   const [films, setFilms] = useState([]);
 
@@ -17,11 +18,11 @@ function Main() {
       });
   }, []);
 
-  // console.log(films);
+  console.log(films);
 
   return (
     <div className={styles.flex}>
-      {films.map(({ poster_path, title, genre_ids, id }) => (
+      {films.map(({ poster_path, title, genre_ids, id}) => (
         
         <div className={styles.content}>
           <div className={styles.movieBlock}>
@@ -33,9 +34,9 @@ function Main() {
             <div className={styles.movieInfoCss}>
               <h2>
                 <Link
-                  onClick={({}) => {console.log()}}
+                  onClick={(id)=> {console.log(id)}}
                   className={styles.linkToInfoFilm}
-                  to="/personalFilmInfo"
+                  to={`personalFilmInfo/${id}`}
                 >
                   {title}
                 </Link>

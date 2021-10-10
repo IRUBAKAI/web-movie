@@ -14,7 +14,7 @@ function Navbar() {
                 <input className={styles.search} type="text" placeholder="Movie name"/>
             </div>
        </nav>   
-
+        
        </>
    )
 }

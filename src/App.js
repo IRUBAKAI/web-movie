@@ -10,8 +10,8 @@ function App() {
   return(
     <>
     <Router>
-      <Route exact path="/favouriteAdd"><FavouriteAdd/></Route>
-      <Route exact path="/PersonalFilmInfo"><PersonalFilmInfo/></Route>
+      <Route exact path="/favouriteadd"><FavouriteAdd/></Route>
+      <Route exact path="/personalfilminfo:/id"><PersonalFilmInfo/></Route>
       <Route exact path="/">
         <Navbar/>
         <Main/>
