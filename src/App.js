@@ -13,7 +13,7 @@ function App() {
     <Router>
     <Switch>
       <Route exact path="/favouriteadd"><FavouriteAdd/></Route>
-      <Route exact path="/PersonalFilmInfo/id"><PersonalFilmInfo/></Route>
+      <Route exact path="/personalfilminfo/:id"><PersonalFilmInfo/></Route>
       <Route exact path="/">
         <Navbar/>
         <Main/>

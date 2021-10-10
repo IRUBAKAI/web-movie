@@ -1,0 +1,21 @@
+.content {
+    border: 1px solid #fff;
+    width: 1500px;
+    height: 600px;
+    background-color: rgba(0, 0, 0, 0.774);
+    margin: 150px auto;
+    display: flex;
+    color: #fff;
+}
+body {
+    background-color: rgba(0, 0, 0, 0.623);
+}
+.img {
+    width: 400px;
+}
+.contentBlock {
+    margin: 150px 100px;
+}
+.marginParagraph {
+    margin: 60px 0;
+}

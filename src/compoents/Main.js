@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
-import PersonalFilmInfo from "./PersonalFilmInfo";
-
 
 function Main() {
   const [films, setFilms] = useState([]);
@@ -17,12 +15,11 @@ function Main() {
       });
   }, []);
 
-  console.log(films);
 
   return (
     <div className={styles.flex}>
-      {films.map(({ poster_path, title, genre_ids, id}) => (
-        
+     
+      {films.map(({ id, poster_path, title, genre_ids, overview }) => (
         <div className={styles.content}>
           <div className={styles.movieBlock}>
             <img
@@ -32,12 +29,12 @@ function Main() {
             />
             <div className={styles.movieInfoCss}>
               <h2>
-                <Link
-                  className={styles.linkToInfoFilm}
-                  to={`personalFilmInfo/${id}`}
-                >
-                  {title}
-                </Link>
+              <Link
+              className={styles.linkToInfoFilm}
+              to={`/personalfilminfo/${id}`}
+          >
+            {title}
+          </Link>
               </h2>
               <p>Genre: {genre_ids}</p>
               <button className={styles.btnAdd}>Add to Favourite</button>
