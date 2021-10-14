@@ -17,11 +17,10 @@ function PersonalFilmInfo() {
           console.log(movieInfo)
           setFilm(movieInfo)
         });
-    }, []);
+    },[]);
    
-   console.log(film)
 
-
+    console.log(film)
    
     return (
 
