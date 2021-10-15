@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import React, { useEffect, useState } from "react";
 import styles from "./PersonalFilmInfo.module.css"
-
+import Navbar from './Navbar';
 
 function PersonalFilmInfo() {
 
@@ -14,17 +14,15 @@ function PersonalFilmInfo() {
       )
         .then((response) => response.json())
         .then((movieInfo) => {
-          console.log(movieInfo)
           setFilm(movieInfo)
         });
-    },[]);
+    },);
    
 
-    console.log(film)
-   
     return (
-
+      
       <div className={styles.background}>
+        <Navbar/>
         <div className={styles.content}>
           <img className={styles.img} src={`https://image.tmdb.org/t/p/original/${film.poster_path}`} alt="" />
           <div className={styles.contentBlock}>

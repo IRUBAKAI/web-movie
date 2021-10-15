@@ -4,7 +4,6 @@ body {
 .navbar {
     background-color: black;
     color: white;
-    padding: 10px;
 }
 .content {
     display: flex;
@@ -23,8 +22,13 @@ body {
     color: yellow;
 }
 .popular {
-    font-size: 2.5rem;
-    margin: 1rem 0;
+    font-size: 2rem;
+    margin: 0;
+    text-decoration: none;
+    color: #fff;
+}
+.popular:hover {
+    color: yellow;
 }
 .search {
     padding: 0.5rem 0.5rem;

@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 
 function Main(props) {
   let inputValue = props.value;
-
-  const [films, setFilms] = useState([]);
+  let getFilms = props.films;
 
   useEffect(() => {
     fetch(
@@ -13,48 +12,76 @@ function Main(props) {
     )
       .then((response) => response.json())
       .then((movieInfo) => {
-        setFilms(movieInfo.results);
+        props.setFilms(movieInfo.results);
+      });
+  }, [props]);
+  
+  
+  useEffect(() => {
+    fetch(
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US")
+      .then((response) => response.json())
+      .then((genresArray) => {
+        props.setGenres(genresArray.genres);
       });
   }, []);
 
-  const filterMovies = films.filter((movie) => {
+
+
+  const filterMovies = getFilms.filter((movie) => {
     return movie.title.toLowerCase().includes(inputValue.toLowerCase());
   });
 
-  function handleClick(e) {
-    films.forEach((item) => {
-      console.log(item);
-    });
-  }
-
   return (
-    <div className={styles.flex}>
-      {filterMovies.map(({ id, poster_path, title, genre_ids }) => (
-        <div className={styles.content}>
-          <div className={styles.movieBlock}>
-            <img
-              className={styles.img}
-              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-              alt=""
-            />
-            <div className={styles.movieInfoCss}>
-              <h2>
-                <Link
-                  className={styles.linkToInfoFilm}
-                  to={`/personalfilminfo/${id}`}
+    <>
+      <div className={styles.flex}>
+        {filterMovies.map((movie) => (
+          <div className={styles.content}>
+            <div className={styles.movieBlock}>
+              <img
+                className={styles.img}
+                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                alt=""
+              />
+              <div className={styles.movieInfoCss}>
+                <h2>
+                  <Link
+                    className={styles.linkToInfoFilm}
+                    to={`/personalfilminfo/${movie.id}`}
+                  >
+                    {movie.title}
+                  </Link>
+                </h2>
+                {props.genres.filter((genre) => {
+                  movie.genre_ids.map((id)=> {
+                    if(genre.id === id) {
+                  <p>Genre: {genre.name}</p>
+              }
+            })
+            })}
+                <button
+                  onClick={function HandleOnClickAdd() {
+                    const newFavouriteList = [...props.favourites, movie];
+                    const saveToLocalStorage = (movie) => {
+                      localStorage.setItem(
+                        "react-movie-app-favourites",
+                        JSON.stringify(movie)
+                      );
+                    };
+                    saveToLocalStorage(newFavouriteList);
+                    props.setFavourites(newFavouriteList);
+                  }}
+                  className={styles.btnAdd}
                 >
-                  {title}
-                </Link>
-              </h2>
-              <p>Genre: {genre_ids}</p>
-              <button onClick={handleClick} className={styles.btnAdd}>
-                Add to Favourite
-              </button>
+                  Add to Favourite
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+        <div></div>
+      </div>
+    </>
   );
 }
 

@@ -3,7 +3,7 @@
     width: 1500px;
     height: 600px;
     background-color: rgba(0, 0, 0, 0.774);
-    margin: 150px auto;
+    margin: 100px auto;
     display: flex;
     color: #fff;
 }
@@ -15,6 +15,7 @@ body {
 }
 .contentBlock {
     margin: 150px 100px;
+    font-size: 1.2rem;
 }
 .marginParagraph {
     margin: 60px 0;

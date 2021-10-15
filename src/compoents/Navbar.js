@@ -1,37 +1,31 @@
-import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import Icon from "./Icons";
-import Main from "./Main"
+import React from "react";
 
-function Navbar() {
-  const [value, setValue] = useState("");
-
+function Navbar(props) {
   return (
-    
     <>
       <nav className={styles.navbar}>
         <div className={styles.content}>
           <Link className={styles.favourite_link} to="/favouriteAdd">
             Favourite {Icon}
           </Link>
-          <h1 className={styles.popular}>Popular Movies</h1>
+          <Link className={styles.popular} to="/">
+            <h1>Popular Movies</h1>
+          </Link>
           <input
             className={styles.search}
             type="text"
             placeholder="Movie name"
             onChange={(event) => {
-              setValue(event.target.value)
+              props.setValue(event.target.value);
             }}
           />
         </div>
       </nav>
-      <Main value={value} setValue={setValue}/>
     </>
-    
   );
-  
 }
 
-
-export default Navbar
+export default Navbar;
