@@ -4,6 +4,8 @@ import Icon from "./Icons";
 import React from "react";
 
 function Navbar(props) {
+  const {setSearch} = props
+
   return (
     <>
       <nav className={styles.navbar}>
@@ -17,7 +19,7 @@ function Navbar(props) {
             type="text"
             placeholder="Movie name"
             onChange={(event) => {
-              props.setValue(event.target.value);
+              setSearch(event.target.value);
             }}
           />
         </div>

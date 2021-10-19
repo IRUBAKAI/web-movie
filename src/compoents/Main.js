@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 
 function Main(props) {
-  let inputValue = props.value;
-  let getFilms = props.films;
-  let getSetFilms = props.setFilms;
-  let favouritesFilms = props.favourites;
-  let setFavouritesFilms = props.setFavourites;
-
+  const {favourites, setFavourites} = props
+  const {films, setFilms} = props
+  const {search} = props
   
   useEffect(() => {
     fetch(
@@ -16,13 +13,13 @@ function Main(props) {
     )
       .then((response) => response.json())
       .then((movieInfo) => {
-        getSetFilms(movieInfo.results);
+        setFilms(movieInfo.results);
       });
-  }, [getSetFilms]);
+  }, [setFilms]);
 
 
-  const filterMovies = getFilms.filter((movie) => {
-    return movie.title.toLowerCase().includes(inputValue.toLowerCase())
+  const filterMovies = films.filter((movie) => {
+    return movie.title.toLowerCase().includes(search.toLowerCase())
   });
 
   return (
@@ -36,16 +33,6 @@ function Main(props) {
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt=""
               />
-              <button onClick={
-                function clickDisabled(e) {
-                  favouritesFilms.map((item) => {
-                    if(item.id === movie.id) {
-                      e.target.setAttribute.disabled = true
-                      console.log(item)
-                    }
-                  })
-                }
-              }>click</button>
               <div className={styles.movieInfoCss}>
                 <h2>
                   <Link
@@ -58,7 +45,7 @@ function Main(props) {
                 <p>HEAR WILL BE GENRES</p>
                 <button
                   onClick={function HandleOnClickAdd() {
-                    const newFavouriteList = [...favouritesFilms, movie];
+                    const newFavouriteList = [...favourites, movie];
                     const saveToLocalStorage = (movie) => {
                       localStorage.setItem(
                         "react-movie-app-favourites",
@@ -67,7 +54,7 @@ function Main(props) {
                     };
                     
                     saveToLocalStorage(newFavouriteList);
-                    setFavouritesFilms(newFavouriteList);
+                    setFavourites(newFavouriteList);
                     
                   }
                 }

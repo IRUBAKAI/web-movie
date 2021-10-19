@@ -7,7 +7,7 @@ import PersonalFilmInfo from "./compoents/PersonalFilmInfo";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
-  const [value, setValue] = useState("");
+  const [search, setSearch] = useState("");
   const [films, setFilms] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
@@ -26,10 +26,10 @@ function App() {
             <PersonalFilmInfo />
           </Route>
           <Route exact path="/">
-            <Navbar setValue={setValue} />
+            <Navbar setSearch={setSearch} />
 
             <Main
-              value={value}
+              search={search}
               films={films}
               setFilms={setFilms}
               setFavourites={setFavourites}

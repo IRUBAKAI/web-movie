@@ -4,21 +4,21 @@ import styles from "./Main.module.css";
 import { Link } from "react-router-dom";
 
 function FavouriteAdd(props) {
-  let favouritesFilms = props.favourites;
-  let setFavouritesFilms = props.setFavourites;
+  const {favourites, setFavourites} = props
+
 
   useEffect(() => {
     const movieFavourites = JSON.parse(
       localStorage.getItem("react-movie-app-favourites")
     );
-    setFavouritesFilms(movieFavourites);
-  }, [setFavouritesFilms]);
+    setFavourites(movieFavourites);
+  }, [setFavourites]);
 
   return (
     <>
       <Navbar />
       <div className={styles.flex}>
-        {favouritesFilms.map((film) => {
+        {favourites.map((film) => {
           return (
             <div className={styles.content}>
               <div className={styles.movieBlock}>
@@ -38,7 +38,7 @@ function FavouriteAdd(props) {
                   <p>Genre: {film.genre_ids}</p>
                   <button
                     onClick={function HandleOnClickAdd() {
-                      const newFavouriteList = favouritesFilms.filter(
+                      const newFavouriteList = favourites.filter(
                         (favourite) => {
                           return favourite.id !== film.id;
                         }
@@ -49,7 +49,7 @@ function FavouriteAdd(props) {
                           JSON.stringify(movie)
                         );
                       };
-                      setFavouritesFilms(newFavouriteList);
+                      setFavourites(newFavouriteList);
                       saveToLocalStorage(newFavouriteList);
                     }}
                     className={styles.btnAdd}
