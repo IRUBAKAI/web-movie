@@ -11,9 +11,7 @@ function Navbar(props) {
           <Link className={styles.favourite_link} to="/favouriteAdd">
             Favourite {Icon}
           </Link>
-          <Link className={styles.popular} to="/">
-            <h1>Popular Movies</h1>
-          </Link>
+          <a className={styles.popular} href="/"><h1>Popular Movies</h1></a>
           <input
             className={styles.search}
             type="text"

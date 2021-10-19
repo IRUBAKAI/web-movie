@@ -12,7 +12,7 @@ function FavouriteAdd(props) {
       localStorage.getItem("react-movie-app-favourites")
     );
     setFavouritesFilms(movieFavourites);
-  },[setFavouritesFilms]);
+  }, [setFavouritesFilms]);
 
   return (
     <>

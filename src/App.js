@@ -10,7 +10,6 @@ function App() {
   const [value, setValue] = useState("");
   const [films, setFilms] = useState([]);
   const [favourites, setFavourites] = useState([]);
-  const [genres, setGenres] = useState([])
 
   return (
     <>
@@ -28,9 +27,8 @@ function App() {
           </Route>
           <Route exact path="/">
             <Navbar setValue={setValue} />
+
             <Main
-              setGenres={setGenres}
-              genres={genres}
               value={value}
               films={films}
               setFilms={setFilms}
