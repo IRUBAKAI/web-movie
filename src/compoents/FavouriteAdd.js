@@ -14,6 +14,22 @@ function FavouriteAdd(props) {
     setFavourites(movieFavourites);
   }, [setFavourites]);
 
+  function HandleOnClickAdd(film) {
+    const newFavouriteList = favourites.filter(
+      (favourite) => {
+        return favourite.id !== film.id;
+      }
+    );
+    const saveToLocalStorage = (movie) => {
+      localStorage.setItem(
+        "react-movie-app-favourites",
+        JSON.stringify(movie)
+      );
+    };
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+  }
+
   return (
     <>
       <Navbar />
@@ -37,21 +53,7 @@ function FavouriteAdd(props) {
                   </h2>
                   <p>Genre: {film.genre_ids}</p>
                   <button
-                    onClick={function HandleOnClickAdd() {
-                      const newFavouriteList = favourites.filter(
-                        (favourite) => {
-                          return favourite.id !== film.id;
-                        }
-                      );
-                      const saveToLocalStorage = (movie) => {
-                        localStorage.setItem(
-                          "react-movie-app-favourites",
-                          JSON.stringify(movie)
-                        );
-                      };
-                      setFavourites(newFavouriteList);
-                      saveToLocalStorage(newFavouriteList);
-                    }}
+                    onClick={() => HandleOnClickAdd(film)}
                     className={styles.btnAdd}
                   >
                     Remove from favourites

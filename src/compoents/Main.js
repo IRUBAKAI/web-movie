@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
 
 function Main(props) {
-  const {favourites, setFavourites} = props
-  const {films, setFilms} = props
-  const {search} = props
-  
+  const { favourites, setFavourites } = props;
+  const { films, setFilms } = props;
+  const { search } = props;
+
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/popular/?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US&page=1"
@@ -17,55 +17,69 @@ function Main(props) {
       });
   }, [setFilms]);
 
-
   const filterMovies = films.filter((movie) => {
-    return movie.title.toLowerCase().includes(search.toLowerCase())
+    return movie.title.toLowerCase().includes(search.toLowerCase());
   });
+
+
+  function HandleOnClickAdd(movie) {
+    const newFavouriteListAdd = [...favourites, movie];
+    const saveToLocalStorage = (movie) => {
+      localStorage.setItem("react-movie-app-favourites", JSON.stringify(movie));
+    };
+
+    saveToLocalStorage(newFavouriteListAdd);
+    setFavourites(newFavouriteListAdd);
+  }
+
+  function HandleOnClickRemove(movie) {
+    const newFavouriteList = favourites.filter(
+      (favourite) => {
+        return favourite.id !== movie.id;
+      }
+    );
+    const saveToLocalStorage = (movie) => {
+      localStorage.setItem(
+        "react-movie-app-favourites",
+        JSON.stringify(movie)
+      );
+    };
+    setFavourites(newFavouriteList);
+    saveToLocalStorage(newFavouriteList);
+  }
+
 
   return (
     <>
-        <div className={styles.flex}>
-        {filterMovies.map((movie) => (
-          <div className={styles.content}>
-            <div className={styles.movieBlock}>
-              <img
-                className={styles.img}
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt=""
-              />
-              <div className={styles.movieInfoCss}>
-                <h2>
-                  <Link
-                    className={styles.linkToInfoFilm}
-                    to={`/personalfilminfo/${movie.id}`}
-                  >
-                    {movie.title}
-                  </Link>
-                </h2>
-                <p>HEAR WILL BE GENRES</p>
-                <button
-                  onClick={function HandleOnClickAdd() {
-                    const newFavouriteList = [...favourites, movie];
-                    const saveToLocalStorage = (movie) => {
-                      localStorage.setItem(
-                        "react-movie-app-favourites",
-                        JSON.stringify(movie)
-                      );
-                    };
-                    
-                    saveToLocalStorage(newFavouriteList);
-                    setFavourites(newFavouriteList);
-                    
-                  }
-                }
-                  className={styles.btnAdd}
-                >
-                  Add to Favourite
-                </button>
+      <div className={styles.flex}>
+        {filterMovies.map((movie) => {
+          const isFavourite = Boolean(
+            favourites.find((favouriteFilm) => favouriteFilm.id === movie.id),
+          );
+          return (
+            <div className={styles.content}>
+              <div className={styles.movieBlock}>
+                <img
+                  className={styles.img}
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt=""
+                />
+                <div className={styles.movieInfoCss}>
+                  <h2>
+                    <Link
+                      className={styles.linkToInfoFilm}
+                      to={`/personalfilminfo/${movie.id}`}
+                    >
+                      {movie.title}
+                    </Link>
+                  </h2>
+                  <p>HEAR WILL BE GENRES</p>
+                  {!isFavourite ? (<button className={styles.btnAdd} onClick={()=> HandleOnClickAdd(movie)}>Add to Favourites</button>) : <button className={styles.btnAdd} onClick={()=> HandleOnClickRemove(movie)}>Remove from Favourites</button>}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </>
   );
