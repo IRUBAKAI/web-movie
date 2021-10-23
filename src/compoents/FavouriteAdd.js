@@ -14,22 +14,6 @@ function FavouriteAdd(props) {
     setFavourites(movieFavourites);
   }, [setFavourites]);
 
-  function HandleOnClickAdd(film) {
-    const newFavouriteList = favourites.filter(
-      (favourite) => {
-        return favourite.id !== film.id;
-      }
-    );
-    const saveToLocalStorage = (movie) => {
-      localStorage.setItem(
-        "react-movie-app-favourites",
-        JSON.stringify(movie)
-      );
-    };
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
-  }
-
   return (
     <>
       <Navbar />
@@ -44,20 +28,15 @@ function FavouriteAdd(props) {
                   alt=""
                 />
                 <div className={styles.movieInfoCss}>
-                  <h2>
+                <h2>
                     <Link
                       className={styles.linkToInfoFilm}
                       to={`/personalfilminfo/${film.id}`}
-                    ></Link>
-                    {film.title}
+                    >
+                      {film.title}
+                    </Link>
                   </h2>
-                  <p>Genre: {film.genre_ids}</p>
-                  <button
-                    onClick={() => HandleOnClickAdd(film)}
-                    className={styles.btnAdd}
-                  >
-                    Remove from favourites
-                  </button>
+                  <p>HEAR WILL BE GENRES</p>
                 </div>
               </div>
             </div>
