@@ -16,7 +16,7 @@ function PersonalFilmInfo() {
         setFilm(movieInfo);
       });
   });
- 
+
   return (
     <div className={styles.background}>
       <Navbar />
