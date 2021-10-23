@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import Navbar from "./Navbar";
-import styles from "./Main.module.css";
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import Navbar from './Navbar';
+import styles from './Main.module.css';
+import { Link } from 'react-router-dom';
 
+//rename please
 function FavouriteAdd(props) {
-  const {favourites, setFavourites} = props
-
+  const { favourites, setFavourites } = props;
 
   useEffect(() => {
     const movieFavourites = JSON.parse(
-      localStorage.getItem("react-movie-app-favourites")
+      localStorage.getItem('react-movie-app-favourites'),
     );
     setFavourites(movieFavourites);
   }, [setFavourites]);
@@ -28,7 +28,7 @@ function FavouriteAdd(props) {
                   alt=""
                 />
                 <div className={styles.movieInfoCss}>
-                <h2>
+                  <h2>
                     <Link
                       className={styles.linkToInfoFilm}
                       to={`/personalfilminfo/${film.id}`}

@@ -1,13 +1,15 @@
-import React from "react";
-import { useState } from "react";
-import Navbar from "./compoents/Navbar";
-import Main from "./compoents/Main";
-import FavouriteAdd from "./compoents/FavouriteAdd";
-import PersonalFilmInfo from "./compoents/PersonalFilmInfo";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { useState } from 'react';
+import Navbar from './compoents/Navbar';
+import Main from './compoents/Main';
+import FavouriteAdd from './compoents/FavouriteAdd';
+import PersonalFilmInfo from './compoents/PersonalFilmInfo';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
+
+  // try to move this state to Main
   const [films, setFilms] = useState([]);
   const [favourites, setFavourites] = useState([]);
 
@@ -17,6 +19,7 @@ function App() {
         <Switch>
           <Route exact path="/favouriteadd">
             <FavouriteAdd
+              //remove you don't use it
               films={films}
               favourites={favourites}
               setFavourites={setFavourites}
