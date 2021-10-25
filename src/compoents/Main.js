@@ -2,11 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Main.module.css';
 
-function Main({ favourites, setFavourites, films, setFilms, search }) {
-  //
-  // const { favourites, setFavourites } = props;
-  // const { films, setFilms } = props;
-  // const { search } = props;
+function Main({ favourites, setFavourites, search }) {
+  const [ films, setFilms ] = useState([]);
   const [genres, setGenres] = useState([]);
 
   useEffect(() => {
@@ -33,8 +30,7 @@ function Main({ favourites, setFavourites, films, setFilms, search }) {
       });
   }, [setGenres]);
 
-  // only components names from capital letter
-  function HandleOnClickAdd(movie) {
+  function handleOnClickAdd(movie) {
     const newFavouriteListAdd = [...favourites, movie];
     const saveToLocalStorage = (movie) => {
       localStorage.setItem('react-movie-app-favourites', JSON.stringify(movie));
@@ -44,7 +40,7 @@ function Main({ favourites, setFavourites, films, setFilms, search }) {
     setFavourites(newFavouriteListAdd);
   }
 
-  function HandleOnClickRemove(movie) {
+  function handleOnClickRemove(movie) {
     const newFavouriteList = favourites.filter((favourite) => {
       return favourite.id !== movie.id;
     });
@@ -59,10 +55,6 @@ function Main({ favourites, setFavourites, films, setFilms, search }) {
     <>
       <div className={styles.flex}>
         {filterMovies.map((movie) => {
-          //move to separate component
-          const isFavourite = Boolean(
-            favourites.find((favouriteFilm) => favouriteFilm.id === movie.id),
-          );
           return (
             <div className={styles.content}>
               <div className={styles.movieBlock}>
@@ -86,19 +78,11 @@ function Main({ favourites, setFavourites, films, setFilms, search }) {
                       .filter((genre) => movie.genre_ids.includes(genre.id))
                       .map((genre) => genre.name + ' ')}
                   </p>
-
-                  <button
-                    className={styles.btnAdd}
-                    onClick={
-                      isFavourite
-                        ? () => HandleOnClickAdd(movie)
-                        : () => HandleOnClickRemove(movie)
-                    }
-                  >
-                    {isFavourite
-                      ? 'Delete from favorites'
-                      : 'Add to Favourites'}
-                  </button>
+                    {Boolean(
+                        favourites.find((favouriteFilm) => favouriteFilm.id === movie.id) ?
+                    <button className={styles.btnAdd} onClick={()=> handleOnClickAdd(movie)}>Add to Favourites</button> :
+                    <button className={styles.btnAdd} onClick={()=> handleOnClickRemove(movie)}>Remove from Favourites</button>
+                    )}
                 </div>
               </div>
             </div>

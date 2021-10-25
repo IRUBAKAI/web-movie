@@ -4,8 +4,7 @@ import styles from './Main.module.css';
 import { Link } from 'react-router-dom';
 
 //rename please
-function FavouriteAdd(props) {
-  const { favourites, setFavourites } = props;
+function FavouriteAdd(favourites, setFavourites) {
 
   useEffect(() => {
     const movieFavourites = JSON.parse(

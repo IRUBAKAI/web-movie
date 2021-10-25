@@ -3,8 +3,7 @@ import styles from './Navbar.module.css';
 import Icon from './Icons';
 import React from 'react';
 
-function Navbar(props) {
-  const { setSearch } = props;
+function Navbar(setSearch) {
 
   return (
     <>
