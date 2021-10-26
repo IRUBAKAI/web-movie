@@ -3,10 +3,7 @@ import Navbar from "./Navbar";
 import styles from "./Main.module.css";
 import { Link } from "react-router-dom";
 
-function FavouriteAdd(props) {
-  const {favourites, setFavourites} = props
-
-
+function FavouriteList({ favourites, setFavourites }) {
   useEffect(() => {
     const movieFavourites = JSON.parse(
       localStorage.getItem("react-movie-app-favourites")
@@ -28,7 +25,7 @@ function FavouriteAdd(props) {
                   alt=""
                 />
                 <div className={styles.movieInfoCss}>
-                <h2>
+                  <h2>
                     <Link
                       className={styles.linkToInfoFilm}
                       to={`/personalfilminfo/${film.id}`}
@@ -47,4 +44,4 @@ function FavouriteAdd(props) {
   );
 }
 
-export default FavouriteAdd;
+export default FavouriteList;

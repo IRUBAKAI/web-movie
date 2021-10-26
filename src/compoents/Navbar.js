@@ -3,17 +3,17 @@ import styles from "./Navbar.module.css";
 import Icon from "./Icons";
 import React from "react";
 
-function Navbar(props) {
-  const {setSearch} = props
-
+function Navbar({ setSearch }) {
   return (
     <>
       <nav className={styles.navbar}>
         <div className={styles.content}>
-          <Link className={styles.favourite_link} to="/favouriteAdd">
+          <Link className={styles.favourite_link} to="/favouritelist">
             Favourite {Icon}
           </Link>
-          <Link className={styles.popular} to="/"><h1>Popular Movies</h1></Link>
+          <Link className={styles.popular} to="/">
+            <h1>Popular Movies</h1>
+          </Link>
           <input
             className={styles.search}
             type="text"
