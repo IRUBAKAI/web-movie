@@ -76,7 +76,7 @@ function Main({ favourites, setFavourites, search }) {
                     </Link>
                   </h2>
                   <p>
-                    Genre:{" "}
+                    Genre:
                     {genres
                       .filter((genre) => movie.genre_ids.includes(genre.id))
                       .map((genre) => genre.name + " ")}
