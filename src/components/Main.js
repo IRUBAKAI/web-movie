@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
+import { useSelector } from 'react-redux'
 
-function Main({ favourites, setFavourites, search }) {
+function Main({ favourites, setFavourites }) {
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
+  const inputValue = useSelector((state)=> state.inputValue)
 
   useEffect(() => {
     fetch(
@@ -17,7 +19,7 @@ function Main({ favourites, setFavourites, search }) {
   }, [setFilms]);
 
   const filterMovies = films.filter((movie) => {
-    return movie.title.toLowerCase().includes(search.toLowerCase());
+    return movie.title.toLowerCase().includes(inputValue.toLowerCase());
   });
 
   useEffect(() => {

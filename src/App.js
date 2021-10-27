@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import Navbar from "./compoents/Navbar";
-import Main from "./compoents/Main";
-import FavouriteList from "./compoents/FavouriteList";
-import PersonalFilmInfo from "./compoents/PersonalFilmInfo";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
+import FavouriteList from "./components/FavouriteList";
+import PersonalFilmInfo from "./components/PersonalFilmInfo";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -25,7 +25,6 @@ function App() {
           </Route>
           <Route exact path="/">
             <Navbar setSearch={setSearch} />
-
             <Main
               search={search}
               setFavourites={setFavourites}
