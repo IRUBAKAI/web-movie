@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import Navbar from './Navbar';
-import styles from './Main.module.css';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import Navbar from "./Navbar";
+import styles from "./Main.module.css";
+import { Link } from "react-router-dom";
 
-//rename please
-function FavouriteAdd(favourites, setFavourites) {
-
+function FavouriteList({ favourites, setFavourites }) {
   useEffect(() => {
     const movieFavourites = JSON.parse(
-      localStorage.getItem('react-movie-app-favourites'),
+      localStorage.getItem("react-movie-app-favourites")
     );
     setFavourites(movieFavourites);
   }, [setFavourites]);
@@ -46,4 +44,4 @@ function FavouriteAdd(favourites, setFavourites) {
   );
 }
 
-export default FavouriteAdd;
+export default FavouriteList;
