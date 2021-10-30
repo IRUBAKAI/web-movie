@@ -4,6 +4,7 @@ import styles from "./Main.module.css";
 import { Link } from "react-router-dom";
 
 function FavouriteList({ favourites, setFavourites }) {
+  
   useEffect(() => {
     const movieFavourites = JSON.parse(
       localStorage.getItem("react-movie-app-favourites")
