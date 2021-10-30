@@ -4,36 +4,31 @@ import styles from "./Main.module.css";
 import { useSelector, useDispatch } from 'react-redux'
 import { getFilmsFetch, getGenresFetch } from '../ActionCreator'
 
-function Main({ favourites, setFavourites }) {
+function Main() {
   const inputValue = useSelector((state)=> state.search.inputValue)
-  const films = useSelector((state) => state.getFilms.films);
-  const genres = useSelector((state) => state.getFilms.genres);
+  const films = useSelector((state) => state.filmsReducer.films);
+  const genres = useSelector((state) => state.genresReducer.genres);
+  const favourites = useSelector((state) => state.filmsReducer.favourites);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getFilmsFetch());
-  }, [dispatch]);
-  
-  useEffect(() => {
     dispatch(getGenresFetch());
   }, [dispatch]);
 
-  
 
   const filterMovies = films.filter((movie) => {
     return movie.title.toLowerCase().includes(inputValue.toLowerCase());
   });
 
-  
 
   function handleOnClickAdd(movie) {
-    const newFavouriteListAdd = [...favourites, movie];
+    const newFavouriteList = [...favourites, movie];
     const saveToLocalStorage = (movie) => {
       localStorage.setItem("react-movie-app-favourites", JSON.stringify(movie));
     };
 
-    saveToLocalStorage(newFavouriteListAdd);
-    setFavourites(newFavouriteListAdd);
+    saveToLocalStorage(newFavouriteList);
+    dispatch({ type: 'favouriteFilms', payload: newFavouriteList})
   }
 
   function handleOnClickRemove(movie) {
@@ -43,17 +38,14 @@ function Main({ favourites, setFavourites }) {
     const saveToLocalStorage = (movie) => {
       localStorage.setItem("react-movie-app-favourites", JSON.stringify(movie));
     };
-    setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
+    dispatch({ type: 'favouriteFilms', payload: newFavouriteList})
   }
 
   return (
     <>
       <div className={styles.flex}>
         {filterMovies.map((movie) => {
-          const isFavourite = Boolean(
-            favourites.find((favouriteFilm) => favouriteFilm.id === movie.id)
-          );
           return (
             <div className={styles.content}>
               <div className={styles.movieBlock}>
@@ -80,12 +72,12 @@ function Main({ favourites, setFavourites }) {
                   <button
                     className={styles.btnAdd}
                     onClick={
-                      !isFavourite
+                      !favourites.find((favouriteFilm) => favouriteFilm.id === movie.id)
                         ? () => handleOnClickAdd(movie)
                         : () => handleOnClickRemove(movie)
                     }
                   >
-                    {!isFavourite
+                    {!favourites.find((favouriteFilm) => favouriteFilm.id === movie.id)
                       ? "Add to Favourites"
                       : "remove from Favourites"}
                   </button>

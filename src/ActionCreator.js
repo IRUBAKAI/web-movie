@@ -1,4 +1,4 @@
-import { UPDATE_FILMS, UPDATE_GENRES } from './action'
+import { UPDATE_FILMS, UPDATE_GENRES, PERSONAL_FILM } from './action'
 
 function updateFilms(payload) {
     return { type: UPDATE_FILMS, payload };
@@ -6,9 +6,12 @@ function updateFilms(payload) {
   function updateGenres(payload) {
     return { type: UPDATE_GENRES, payload}
   }
+  function personalFilm(payload) {
+    return { type: PERSONAL_FILM, payload}
+  }
   
-  //action creator too
   
+
   export function getFilmsFetch() {
     return function (dispatch) {
       fetch("https://api.themoviedb.org/3/movie/popular/?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US&page=1")
@@ -28,3 +31,16 @@ function updateFilms(payload) {
         });
     };
   }
+
+  export function personalFilmFetch(id) {
+    return function (dispatch) {
+      fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US`)
+        .then((data) => data.json())
+        .then((data) => {
+          dispatch(personalFilm(data));
+        });
+    };
+  }
+
+
+  

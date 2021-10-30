@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { UPDATE_FILMS, UPDATE_GENRES } from "./action";
+import { UPDATE_FILMS, UPDATE_GENRES, PERSONAL_FILM } from "./action";
 
 function reducer(state = { inputValue: "" }, action) {
   switch (action.type) {
@@ -13,23 +13,36 @@ function reducer(state = { inputValue: "" }, action) {
   }
 }
 
-function getFilms(state = { films: [], genres: [], filterMovies: [] }, action) {
+function filmsReducer(state = { films: [], personalFilm: [], favourites: [] }, action) {
   switch (action.type) {
     case UPDATE_FILMS: {
       return { ...state, films: action.payload };
     }
-    case UPDATE_GENRES: {
-      return { ...state, genres: action.payload };
+    case PERSONAL_FILM: {
+      return {...state, personalFilm: action.payload}
+    }
+    case 'favouriteFilms': {
+      return {...state, favourites: action.payload}
     }
     default:
       return state;
   }
 }
 
+function genresReducer( state = { genres: [] }, action) {
+  switch (action.type) {
+    case UPDATE_GENRES: {
+      return { ...state, genres: action.payload };
+    }
+    default: 
+    return state;
+  }
+}
+
 
 
 const store = createStore(
-  combineReducers({ search: reducer, getFilms: getFilms }),
+  combineReducers({ search: reducer, filmsReducer: filmsReducer, genresReducer: genresReducer }),
   applyMiddleware(thunk),
 );
 
