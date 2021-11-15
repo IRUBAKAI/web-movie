@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Main.module.css";
+import { useSelector } from 'react-redux'
 
-function Main({ favourites, setFavourites, search }) {
+function Main({ favourites, setFavourites }) {
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
+<<<<<<< HEAD:src/compoents/Main.js
   
+=======
+  const inputValue = useSelector((state)=> state.inputValue)
+
+>>>>>>> bd827ed9c533869a70fe88efc07cb56f68798bce:src/components/Main.js
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/popular/?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US&page=1"
@@ -17,7 +23,7 @@ function Main({ favourites, setFavourites, search }) {
   }, [setFilms]);
 
   const filterMovies = films.filter((movie) => {
-    return movie.title.toLowerCase().includes(search.toLowerCase());
+    return movie.title.toLowerCase().includes(inputValue.toLowerCase());
   });
 
   useEffect(() => {
@@ -77,7 +83,7 @@ console.log(favourites)
                     </Link>
                   </h2>
                   <p>
-                    Genre:{" "}
+                    Genre:
                     {genres
                       .filter((genre) => movie.genre_ids.includes(genre.id))
                       .map((genre) => genre.name + " ")}
