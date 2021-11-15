@@ -6,7 +6,8 @@ import { useSelector } from 'react-redux'
 function Main({ favourites, setFavourites }) {
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
-  
+  const inputValue = useSelector((state)=> state.inputValue)
+
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/popular/?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US&page=1"
