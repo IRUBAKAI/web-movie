@@ -5,7 +5,7 @@ import styles from "./Main.module.css";
 function Main({ favourites, setFavourites, search }) {
   const [films, setFilms] = useState([]);
   const [genres, setGenres] = useState([]);
-
+  
   useEffect(() => {
     fetch(
       "https://api.themoviedb.org/3/movie/popular/?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US&page=1"
@@ -22,12 +22,12 @@ function Main({ favourites, setFavourites, search }) {
 
   useEffect(() => {
     fetch(
-      "https://api.themoviedb.org/3/genre/movie/list?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US"
-    )
+      "https://api.themoviedb.org/3/genre/movie/list?api_key=1008ba9b0955f57726599ab52debc71b&language=en-US")
       .then((response) => response.json())
       .then((genresInfo) => {
         setGenres(genresInfo.genres);
       });
+      
   }, [setGenres]);
 
   function handleOnClickAdd(movie) {
@@ -51,6 +51,7 @@ function Main({ favourites, setFavourites, search }) {
     saveToLocalStorage(newFavouriteList);
   }
 
+console.log(favourites)
   return (
     <>
       <div className={styles.flex}>
