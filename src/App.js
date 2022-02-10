@@ -26,11 +26,11 @@ function App() {
           </Route> */}
           <Route exact path="/web-movie">
             <Navbar setSearch={setSearch} />
-            <Main
-              search={search}
-              setFavourites={setFavourites}
-              favourites={favourites}
-            />
+             <Main
+               search={search}
+               setFavourites={setFavourites}
+               favourites={favourites}
+             />
           </Route>
         </Switch>
       </Router>
