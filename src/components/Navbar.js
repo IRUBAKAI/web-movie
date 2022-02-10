@@ -21,7 +21,7 @@ function Navbar() {
           <Link className={styles.favourite_link} to="/favouritelist">
             Favourite {Icon}
           </Link>
-          <Link className={styles.popular} to="/">
+          <Link className={styles.popular} to="/web-movie">
             <h1>Popular Movies</h1>
           </Link>
           <Search
