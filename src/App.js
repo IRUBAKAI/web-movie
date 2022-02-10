@@ -12,6 +12,7 @@ function App() {
 
   return (
     <>
+    <p style={{color: 'red'}}>PIZZZZZZZZZZZZZZZZZZZZZZZZZZZZZA</p>
       <Router>
         <Switch>
 //           <Route exact path="/favouritelist">
