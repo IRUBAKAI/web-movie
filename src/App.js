@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/personalfilminfo/:id">
             <PersonalFilmInfo />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/web-movie">
             <Navbar setSearch={setSearch} />
             <Main
               search={search}
