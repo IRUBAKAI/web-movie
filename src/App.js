@@ -12,9 +12,10 @@ function App() {
 
   return (
     <>
+    <p style={{color: 'red'}}>APAPPAPAPA</p>
       <Router>
         <Switch>
-          <Route exact path="/favouritelist">
+          {/* <Route exact path="/favouritelist">
             <FavouriteList
               favourites={favourites}
               setFavourites={setFavourites}
@@ -22,8 +23,8 @@ function App() {
           </Route>
           <Route exact path="/personalfilminfo/:id">
             <PersonalFilmInfo />
-          </Route>
-          <Route exact path="/">
+          </Route> */}
+          <Route exact path="/web-movie">
             <Navbar setSearch={setSearch} />
             <Main
               search={search}

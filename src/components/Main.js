@@ -52,8 +52,6 @@ function Main({ favourites, setFavourites }) {
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   }
-
-console.log(favourites)
   return (
     <>
       <div className={styles.flex}>

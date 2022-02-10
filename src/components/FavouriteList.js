@@ -11,7 +11,7 @@ function FavouriteList({ favourites, setFavourites }) {
     );
     setFavourites(movieFavourites);
   }, [setFavourites]);
-
+  console.log(favourites)
   return (
     <>
       <Navbar />
