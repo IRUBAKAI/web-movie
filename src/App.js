@@ -14,22 +14,22 @@ function App() {
     <>
       <Router>
         <Switch>
-          <Route exact path="/favouritelist">
-            <FavouriteList
-              favourites={favourites}
-              setFavourites={setFavourites}
-            />
-          </Route>
-          <Route exact path="/personalfilminfo/:id">
-            <PersonalFilmInfo />
-          </Route>
+//           <Route exact path="/favouritelist">
+//             <FavouriteList
+//               favourites={favourites}
+//               setFavourites={setFavourites}
+//             />
+//           </Route>
+//           <Route exact path="/personalfilminfo/:id">
+//             <PersonalFilmInfo />
+//           </Route>
           <Route exact path="/web-movie">
             <Navbar setSearch={setSearch} />
-            <Main
-              search={search}
-              setFavourites={setFavourites}
-              favourites={favourites}
-            />
+//             <Main
+//               search={search}
+//               setFavourites={setFavourites}
+//               favourites={favourites}
+//             />
           </Route>
         </Switch>
       </Router>
